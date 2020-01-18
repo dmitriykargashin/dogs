@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.cardamon.dogs.R
@@ -43,6 +41,18 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = dogsListAdapter
 
+
+
+
+            refreshLayout.setOnRefreshListener {
+                dogsList.visibility = View.GONE
+                listError.visibility = View.GONE
+                loadingView.visibility = View.VISIBLE
+                viewModel.refresh()
+                refreshLayout.isRefreshing = false
+            }
+
+
             observeViewModel()
         }
 
@@ -61,7 +71,7 @@ class ListFragment : Fragment() {
 
         viewModel.dogsListError.observe(this, Observer { isError ->
             isError?.let {
-                listError.visibility  = if (it) View.VISIBLE else View.GONE
+                listError.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
 
