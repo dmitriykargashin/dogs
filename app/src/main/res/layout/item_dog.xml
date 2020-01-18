@@ -8,7 +8,6 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:src="@mipmap/ic_dog_icon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"

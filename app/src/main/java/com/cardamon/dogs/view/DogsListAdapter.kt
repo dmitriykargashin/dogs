@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.cardamon.dogs.R
 import com.cardamon.dogs.model.DogBreed
+import com.cardamon.dogs.util.getProgressDrawable
+import com.cardamon.dogs.util.loadImage
 import kotlinx.android.synthetic.main.item_dog.view.*
 
 class DogsListAdapter(val dogList: ArrayList<DogBreed>) :
@@ -39,6 +41,7 @@ class DogsListAdapter(val dogList: ArrayList<DogBreed>) :
             )
 
         }
+        holder.view.imageView.loadImage(dogList[position].imageUrl, getProgressDrawable(holder.view.context))
 
     }
 }
