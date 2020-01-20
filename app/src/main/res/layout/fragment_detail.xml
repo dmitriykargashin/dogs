@@ -5,14 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="dogInfo"
             type="com.cardamon.dogs.model.DogBreed" />
+        <variable
+            name="palette"
+            type="com.cardamon.dogs.model.DogPallete" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{palette.color}"
         tools:context=".view.DetailFragment">
 
         <ImageView
@@ -20,10 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:minHeight="200dp"
-            android:scaleType="fitCenter"
             android:imageUrl="@{dogInfo.imageUrl}"
-                      />
+            android:minHeight="200dp"
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/dogName"
