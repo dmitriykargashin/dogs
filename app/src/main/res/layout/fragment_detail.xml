@@ -4,60 +4,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="dogInfo"
+            type="com.cardamon.dogs.model.DogBreed" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment">
-<ImageView
-    android:id="@+id/dogImage"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:src="@mipmap/ic_dog_icon"
-    android:scaleType="fitCenter"
-    android:minHeight="200dp"
 
-    />
+        <ImageView
+            android:id="@+id/dogImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:minHeight="200dp"
+            android:scaleType="fitCenter"
+            android:imageUrl="@{dogInfo.imageUrl}"
+                      />
 
         <TextView
             android:id="@+id/dogName"
+            style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dogImage"
-            android:text="Dog Name"
-            style="@style/Title"
             android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+            android:layout_margin="4dp"
+            android:text="@{dogInfo.dogBreed}" />
 
         <TextView
             android:id="@+id/dogPurpose"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dogName"
-            android:text="Dog purpose"
-            style="@style/Text"
             android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+            android:layout_margin="4dp"
+            android:text="@{dogInfo.breedFor}" />
 
         <TextView
             android:id="@+id/dogTemperament"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dogPurpose"
-            android:text="Dog temperament"
-            style="@style/Text"
             android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+            android:layout_margin="4dp"
+            android:text="@{dogInfo.temperament}" />
 
         <TextView
             android:id="@+id/dogLifespan"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dogTemperament"
-            android:text="Dog Lifespan"
-            style="@style/Text"
             android:layout_centerHorizontal="true"
-            android:layout_margin="4dp"/>
+            android:layout_margin="4dp"
+            android:text="@{dogInfo.lifeSpan}" />
 
     </RelativeLayout>
 </layout>
