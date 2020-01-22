@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.cardamon.dogs.model.DogBreed
 import com.cardamon.dogs.model.DogDatabase
 import com.cardamon.dogs.model.DogsApiService
+import com.cardamon.dogs.util.NotificationsHelper
 import com.cardamon.dogs.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -64,6 +65,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         storeDogsLocally(dogList)
                         Toast.makeText(getApplication(), "From endpoint", Toast.LENGTH_SHORT).show()
+                        NotificationsHelper(getApplication()).createNotification()
+
                     }
 
                     override fun onError(e: Throwable) {
