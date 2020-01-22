@@ -4,10 +4,8 @@ package com.cardamon.dogs.view
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,6 +28,9 @@ import kotlinx.android.synthetic.main.item_dog.view.*
  * A simple [Fragment] subclass.
  */
 class DetailFragment : Fragment() {
+
+    private var sendSmsStarted = false
+
     private var dogUuid = 0
     private lateinit var viewModel: DetailViewModel
 
@@ -39,6 +40,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         dataBinding =
             DataBindingUtil.inflate<FragmentDetailBinding>(
                 inflater,
@@ -91,12 +93,37 @@ class DetailFragment : Fragment() {
 
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     Palette.from(resource)
-                        .generate{palette ->
-                            val intColor= palette?.lightVibrantSwatch?.rgb ?: 0
+                        .generate { palette ->
+                            val intColor = palette?.lightVibrantSwatch?.rgb ?: 0
                             val myPallete = DogPallete(intColor)
                             dataBinding.palette = myPallete
                         }
                 }
             })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.detail_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_send_sms -> {
+                sendSmsStarted = true
+                (activity as MainActivity).checkSmsPermission()
+            }
+
+            R.id.action_share -> {
+
+            }
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun onPermissionResult(permissionGranted:Boolean) {
+
     }
 }

@@ -8,17 +8,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.cardamon.dogs.R
 
-fun getProgressDrawable (context: Context):CircularProgressDrawable{
+val PERMISION_SEND_SMS = 234
+
+fun getProgressDrawable(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {
-        strokeWidth=10f
-        centerRadius=50f
+        strokeWidth = 10f
+        centerRadius = 50f
         start()
     }
 }
 
 
-fun ImageView.loadImage (uri:String?, progressDrawable:CircularProgressDrawable) {
-    val options=RequestOptions()
+fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable) {
+    val options = RequestOptions()
         .placeholder(progressDrawable)
         .error(R.mipmap.ic_dog_icon)
 
@@ -29,6 +31,6 @@ fun ImageView.loadImage (uri:String?, progressDrawable:CircularProgressDrawable)
 }
 
 @BindingAdapter("android:imageUrl")
-fun loadImage (view: ImageView, url:String?) {
+fun loadImage(view: ImageView, url: String?) {
     view.loadImage(url, getProgressDrawable(view.context))
 }
