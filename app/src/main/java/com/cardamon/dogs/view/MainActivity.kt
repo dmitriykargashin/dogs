@@ -20,10 +20,12 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navContoller)
 
 
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navContoller,null)
     }
+
 
 }
